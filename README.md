@@ -40,7 +40,6 @@ The model uses the following features:
 Algorithm:
 - Logistic Regression
 
----
 
 ---
 
