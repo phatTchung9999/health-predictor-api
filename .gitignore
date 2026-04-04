@@ -24,8 +24,6 @@ env/
 # Database
 *.sqlite3
 
-# Model files (optional)
-model/*.pkl
 
 # Jupyter
 .ipynb_checkpoints/

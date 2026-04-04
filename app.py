@@ -1,7 +1,6 @@
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
-from pydantic import BaseModel, Field, computed_field
-from typing import Annotated, Literal
+from schema.user_input import UserInput
 
 import pickle
 import pandas as pd
@@ -9,20 +8,24 @@ import pandas as pd
 with open('model/health_model.pkl', 'rb') as f:
     model = pickle.load(f)
 
+MODEL_VERSION = '1.0.0'
+
 app = FastAPI()
 
-class UserInput(BaseModel):
-    age: Annotated[int, Field(..., gt=0, lt=120)]
-    weight: Annotated[float, Field(..., gt=0)]
-    height: Annotated[float, Field(..., gt=0)]
-    isSmoker: Annotated[bool, Field(..., description='True or False')]
 
-    @computed_field
-    @property
-    def bmi(self) -> float:
-        bmi = round(self.weight/(self.height**2), 2)
-        return bmi
-    
+@app.get('/')
+def home():
+    return {'message' : 'Health Prediction API'}
+
+@app.get('/health')
+def health_check():
+    return {
+        'status': 'OK',
+        'version': MODEL_VERSION,
+        'model': model is not None
+    }
+
+
 @app.post('/predict')
 def predict(user_input: UserInput):
     input_df = pd.DataFrame(
@@ -32,7 +35,7 @@ def predict(user_input: UserInput):
                 'weight': user_input.weight,
                 'height': user_input.height,
                 'bmi': user_input.bmi,
-                'isSmoker': int(user_input.isSmoker)
+                'smoker': int(user_input.smoker)
             }
         ]
     )
