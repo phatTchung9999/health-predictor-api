@@ -84,7 +84,7 @@ with col2:
 st.divider()
 
 with st.form('chat_box'):
-    question = st.text_input(label= 'Ask our AI to put you back in the pretty figure, and health:' ,
+    question = st.text_input(label= 'Ask our AI how to get back in shape and stay healthy:' ,
                 placeholder='How can I imporve my health?') 
     
     sent = st.form_submit_button("Ask") 
