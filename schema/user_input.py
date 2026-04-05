@@ -14,3 +14,5 @@ class UserInput(BaseModel):
         bmi = round(self.weight/(self.height**2), 2)
         return bmi
     
+class QuestionInput(BaseModel):
+    question : Annotated[str, Field(..., description='Question that you want to ask gpt')]

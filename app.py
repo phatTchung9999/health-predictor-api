@@ -1,16 +1,25 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.responses import JSONResponse
-from schema.user_input import UserInput
+from schema.user_input import UserInput, QuestionInput
+from openai import OpenAI
+from dotenv import load_dotenv
 
+import os
 import pickle
 import pandas as pd
+
+
 
 with open('model/health_model.pkl', 'rb') as f:
     model = pickle.load(f)
 
 MODEL_VERSION = '1.0.0'
 
+load_dotenv()
+
 app = FastAPI()
+
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 
 @app.get('/')
@@ -52,3 +61,24 @@ def predict(user_input: UserInput):
             'result': result
         }
     )
+
+
+@app.post('/ask')
+def ask(data: QuestionInput):
+    try:
+        response = client.responses.create(
+            model="gpt-5.4",
+            instructions=(
+                "You are a helpful health assistant. "
+                "Answer the user's question based on the health information provided in their message. "
+                "Be clear, simple, and practical. "
+                "Do not claim to be a doctor, and do not give a medical diagnosis."),            
+            input=data.question,
+        )
+
+        return {
+            "answer": response.output_text
+        }
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
