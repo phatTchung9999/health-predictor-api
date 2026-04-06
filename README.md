@@ -1,159 +1,56 @@
-# Health Predictor API
+# Health Predictor AI
 
-A simple AI-powered API that predicts whether a person is **healthy or unhealthy** based on basic health metrics.
+A full-stack AI application that predicts a user's health status based on basic information and provides personalized health recommendations.
 
-Built with **FastAPI + Scikit-learn**, this project demonstrates how to train a machine learning model and deploy it as an API.
+## Live Demo
+http://3.134.78.96:8501/
 
 ---
 
 ## Features
 
-- Predict health status (healthy / unhealthy)
-- Uses Logistic Regression model
-- RESTful API built with FastAPI
-- Input validation using Pydantic
-- JSON-based responses
-- Versioned model endpoint
+- Real-time health prediction using machine learning
+- BMI calculation
+- AI-powered health advice (LLM integration)
+- Interactive UI with Streamlit
+- FastAPI backend for prediction API
+- Dockerized for deployment
+- Deployed on AWS EC2
 
 ---
 
 ## Tech Stack
 
-- Python
-- FastAPI
-- Scikit-learn
-- Pandas
-- NumPy
+- Backend: FastAPI
+- Frontend: Streamlit
+- Machine Learning: Scikit-learn
+- Deployment: AWS EC2
+- Containerization: Docker
+- Language: Python
 
 ---
 
-## Model Details
+## How It Works
 
-The model uses the following features:
+1. User inputs:
+   - Age
+   - Weight
+   - Height
+   - Smoking status
 
-- Age
-- Weight (kg)
-- Height (m)
-- BMI
-- Smoking status (0 = non-smoker, 1 = smoker)
+2. The app:
+   - Calculates BMI
+   - Sends data to FastAPI backend
+   - Model predicts health status
 
-Algorithm:
-- Logistic Regression
-
-
----
-
-## Installation
-
-### 1. Clone repo
-
-
-git clone https://github.com/phatTchung9999/health-predictor-api.git
-
-cd health-predictor-api
-
-
-### 2. Create virtual environment
-
-**Windows**
-
-python -m venv .venv
-.venv\Scripts\activate
-
-
-**Mac/Linux**
-
-python3 -m venv .venv
-source .venv/bin/activate
-
-
-### 3. Install dependencies
-
-
-pip install -r requirements.txt
-
+3. Output:
+   - Health result (Healthy / Unhealthy)
+   - AI-generated recommendations
 
 ---
 
-## Run Server
-
-
-uvicorn app:app --reload
-
-
-Open:
-
-http://127.0.0.1:8000
-
-
----
-
-## API Endpoints
-
-### GET `/`
-
-
-{
-"message": "Health Prediction API"
-}
-
-
----
-
-### GET `/health`
-
-
-{
-"status": "OK",
-"version": "1.0.0",
-"model": true
-}
-
-
----
-
-### POST `/predict`
-
-#### Request
-
-
-{
-"age": 25,
-"weight": 70,
-"height": 1.75,
-"smoker": false
-}
-
-
-#### Response
-
-
-{
-"result": "healthy"
-}
-
-
----
-
-## Notes
-
-- BMI is automatically calculated inside the backend
-- You do NOT need to send BMI manually
-- Input is validated using Pydantic
-
----
-
-## API Docs
-
-Swagger:
-
-http://127.0.0.1:8000/docs
-
-
-ReDoc:
-
-http://127.0.0.1:8000/redoc
-
----
+## Author
+###Phat Chung
+Computer Science Student | Backend & AI Enthusiast
 
 
