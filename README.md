@@ -49,8 +49,11 @@ http://3.134.78.96:8501/
 
 ---
 
-## Author
-Phat Chung
+## Author 
+
+### Phat Chung
 Computer Science Student | Backend & AI Enthusiast
+
+---
 
 
