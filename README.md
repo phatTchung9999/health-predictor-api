@@ -4,6 +4,7 @@ A full-stack AI application that predicts a user's health status based on basic 
 
 ## Live Demo
 http://3.134.78.96:8501/
+https://healthpredictor.phatchung.dev/
 
 ---
 
