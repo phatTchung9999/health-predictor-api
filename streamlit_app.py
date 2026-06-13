@@ -2,8 +2,8 @@ import streamlit as st
 import requests
 
 
-API_URL = "http://localhost:8000/predict"
-OPENAI_URL = "http://localhost:8000/ask"
+API_URL = "https://healthpredictor.azurewebsites.net/predict"
+OPENAI_URL = "https://healthpredictor.azurewebsites.net/ask"
 
 
 st.set_page_config(page_title="Health Predictor", page_icon="🩺")
