@@ -66,6 +66,9 @@ jobs:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_084CB08936A94A6C8CA05485A93CE90B }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_EB2432C7D2924D7C8F3C9D890BD78C0E }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_2136CE76E66B4F98999A02EF81A69179 }}
+      
+      - name: Use Streamlit requirements
+        run: cp requirements-ui.txt requirements.txt
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
@@ -73,4 +76,5 @@ jobs:
         with:
           app-name: 'healthpredictorfrontend'
           slot-name: 'Production'
+          package: .
           
